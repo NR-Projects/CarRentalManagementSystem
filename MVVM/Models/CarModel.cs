@@ -15,6 +15,7 @@ namespace CarRentalManagementSystem.MVVM.Models
         public string? PlateNo { get; set; }
 
         // Renting
+        public string? CarStatus { get; set; }
         public DateOnly? RentDate { get; set; }
         public DateOnly? ReturnDate { get; set; }
         public double? PricePerDay { get; set; }

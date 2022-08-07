@@ -20,18 +20,18 @@
             <RowDefinition Height="0.10*" />
             <RowDefinition Height="0.90*" />
         </Grid.RowDefinitions>
-        
+
         <Button
             Grid.Row="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="{StaticResource Back-Icon}"
-            Command="{Binding NavigateBackAccounts}"
+            Command="{Binding NavigateBack}"
             Background="Transparent"
             BorderBrush="Transparent"
             Margin="5,5,0,0"
             />
-        
+
         <Grid Grid.Row="1">
             <TabControl>
                 <TabItem
@@ -40,7 +40,7 @@
                     <StackPanel>
 
                         <Label
-                            Content="Add New Caes"
+                            Content="Add New Cars"
                             Foreground="Black"
                             HorizontalContentAlignment="Center"
                             Margin="0, 10, 0, 25"
@@ -48,7 +48,7 @@
 
                         <Grid
                             Margin="0, 5, 0, 5">
-                            
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.48*" />
                                 <ColumnDefinition Width="0.52*" />
@@ -56,7 +56,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Username:"
+                                Content="Car Type:"
                                 Foreground="Black"
                                 HorizontalContentAlignment="Right"
                                 Margin="0, 0, 20, 0"
@@ -64,7 +64,7 @@
 
                             <TextBox
                                 Grid.Column="1"
-                                Text="{Binding UsernameStr}"
+                                Text="{Binding AddCarType}"
                                 HorizontalAlignment="Left"
                                 Margin="0, 0, 0, 0"
                                 Width="140"
@@ -81,7 +81,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Username:"
+                                Content="Car Brand:"
                                 Foreground="Black"
                                 HorizontalContentAlignment="Right"
                                 Margin="0, 0, 20, 0"
@@ -89,7 +89,7 @@
 
                             <TextBox
                                 Grid.Column="1"
-                                Text="{Binding UsernameStr}"
+                                Text="{Binding AddCarBrand}"
                                 HorizontalAlignment="Left"
                                 Margin="0, 0, 0, 0"
                                 Width="140"
@@ -106,7 +106,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Username:"
+                                Content="Car Model:"
                                 Foreground="Black"
                                 HorizontalContentAlignment="Right"
                                 Margin="0, 0, 20, 0"
@@ -114,7 +114,7 @@
 
                             <TextBox
                                 Grid.Column="1"
-                                Text="{Binding UsernameStr}"
+                                Text="{Binding AddCarModel}"
                                 HorizontalAlignment="Left"
                                 Margin="0, 0, 0, 0"
                                 Width="140"
@@ -131,7 +131,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Username:"
+                                Content="Car Description:"
                                 Foreground="Black"
                                 HorizontalContentAlignment="Right"
                                 Margin="0, 0, 20, 0"
@@ -139,11 +139,14 @@
 
                             <TextBox
                                 Grid.Column="1"
-                                Text="{Binding UsernameStr}"
+                                Text="{Binding AddCarDescription}"
+                                TextWrapping="Wrap"
+                                AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Visible"
                                 HorizontalAlignment="Left"
                                 Margin="0, 0, 0, 0"
                                 Width="140"
-                                Height="22"/>
+                                Height="50" />
                         </Grid>
 
                         <Grid
@@ -156,7 +159,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Username:"
+                                Content="Car Plate No:"
                                 Foreground="Black"
                                 HorizontalContentAlignment="Right"
                                 Margin="0, 0, 20, 0"
@@ -164,7 +167,7 @@
 
                             <TextBox
                                 Grid.Column="1"
-                                Text="{Binding UsernameStr}"
+                                Text="{Binding AddCarPlateNo}"
                                 HorizontalAlignment="Left"
                                 Margin="0, 0, 0, 0"
                                 Width="140"
@@ -173,21 +176,389 @@
 
                         <Button
                             Grid.Row="1"
-                            Command="{Binding NavigateHome}"
-                            Content="Authenticate"
-                            FontSize="15"
+                            Command="{Binding AddCarButton}"
+                            Content="Add Car"
+                            FontSize="12"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
-                            Padding="8,3,8,3"
+                            Margin="0, 40, 0, 0"
+                            Padding="10,5,10,5"
                             Background="#31E77A" />
                     </StackPanel>
-                    
+
                 </TabItem>
                 <TabItem
                     Header="Update Existing Cars">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.38*" />
+                            <ColumnDefinition Width="0.62*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Vertical">
+
+                            <Label
+                                Content="Update Cars"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Center"
+                                Margin="0, 10, 0, 25"
+                                FontSize="20"/>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Type:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCarType}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Brand:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCarBrand}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Model:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCarModel}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Description:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCarDescription}"
+                                    TextWrapping="Wrap"
+                                    AcceptsReturn="True"
+                                    VerticalScrollBarVisibility="Visible"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="50" />
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Plate No:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCarPlateNo}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding UpdateCarButton}"
+                                Content="Update Car"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0, 40, 0, 0"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.9*" />
+                                <RowDefinition Height="0.1*" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid
+                                Grid.Row="0"
+                                Margin="10"
+                                CanUserAddRows="False"
+                                AutoGenerateColumns="False"
+                                SelectedIndex="{Binding CurrentUpdateCollectionIndex, Mode=TwoWay}"
+                                ItemsSource="{Binding UpdateCarCollection}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                    Binding="{Binding Type}"
+                                    Header="Type"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Brand}"
+                                    Header="Brand"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Model}"
+                                    Header="Model"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Description}"
+                                    Header="Description"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding PlateNo}"
+                                    Header="PlateNo"
+                                    Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding RefreshCollection}"
+                                Content="Refresh Collection"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+                        </Grid>
+
+                    </Grid>
+
                 </TabItem>
                 <TabItem
                     Header="Delete Existing Cars">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.38*" />
+                            <ColumnDefinition Width="0.62*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Vertical">
+
+                            <Label
+                                Content="Delete Cars"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Center"
+                                Margin="0, 10, 0, 25"
+                                FontSize="20"/>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car ID:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Content="{Binding DeleteCarID}"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Left"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+                            </Grid>
+                            
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Model:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Content="{Binding DeleteCarModel}"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Left"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+                            </Grid>
+                            
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Car Brand:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Content="{Binding DeleteCarBrand}"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Left"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+                            </Grid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding DeleteCarButton}"
+                                Content="Delete Car"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0, 40, 0, 0"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.9*" />
+                                <RowDefinition Height="0.1*" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid
+                                Grid.Row="0"
+                                Margin="10"
+                                CanUserAddRows="False"
+                                AutoGenerateColumns="False"
+                                SelectedIndex="{Binding CurrentDeleteCollectionIndex, Mode=TwoWay}"
+                                ItemsSource="{Binding DeleteCarCollection}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                    Binding="{Binding Type}"
+                                    Header="Type"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Brand}"
+                                    Header="Brand"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Model}"
+                                    Header="Model"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding Description}"
+                                    Header="Description"
+                                    Width="*" />
+                                    <DataGridTextColumn
+                                    Binding="{Binding PlateNo}"
+                                    Header="PlateNo"
+                                    Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding RefreshCollection}"
+                                Content="Refresh Collection"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+                        </Grid>
+
+                    </Grid>
+                    
                 </TabItem>
             </TabControl>
         </Grid>
