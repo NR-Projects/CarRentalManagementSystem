@@ -39,16 +39,16 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 // Clear Session
 
                 // Send Back To Auth View
-                _ServiceCollection.GetNavService().Navigate(new AuthViewModel(_ServiceCollection));
+                GetServiceCollection().GetNavService().Navigate(new AuthViewModel(GetServiceCollection()));
             });
 
 
             NavigateCars = new ExecuteOnlyCommand((_) => {
-                _ServiceCollection.GetNavService().Navigate(new CarsViewModel(_ServiceCollection));
+                GetServiceCollection().GetNavService().Navigate(new CarsViewModel(GetServiceCollection()));
             });
 
             NavigateCustomers = new ExecuteOnlyCommand((_) => {
-                //
+                GetServiceCollection().GetNavService().Navigate(new CustomersViewModel(GetServiceCollection()));
             });
 
             NavigateRentCar = new ExecuteOnlyCommand((_) => {

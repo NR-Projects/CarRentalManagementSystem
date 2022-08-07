@@ -11,8 +11,13 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
 {
     public abstract partial class ViewModelBase : INotifyPropertyChanged
     {
-        protected ServiceCollection _ServiceCollection;
+        private ServiceCollection _ServiceCollection;
         public abstract string ViewName { get; }
+
+        protected ServiceCollection GetServiceCollection()
+        {
+            return _ServiceCollection;
+        }
 
         public virtual void OnEnterView() {}
         public virtual void OnExitView() {}

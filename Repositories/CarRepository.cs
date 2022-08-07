@@ -109,7 +109,7 @@ namespace CarRentalManagementSystem.Repositories
             return null;
         }
 
-        public void UpdateCarRentStatus()
+        public void UpdateCarRentStatus(CarModel car)
         {
             //
         }

@@ -33,7 +33,7 @@
                 Content="Car Rental Management System"
                 Foreground="White"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Bottom"
+                VerticalContentAlignment="Top"
                 Margin="0, 0, 0, 0"
                 FontSize="20"/>
 
@@ -50,7 +50,7 @@
                     BorderBrush="Transparent"
                     FontSize="12"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
+                    VerticalAlignment="Top"
                     Margin="0,0,50,0"/>
 
                 <Button
@@ -61,7 +61,7 @@
                     BorderBrush="Transparent"
                     FontSize="12"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
+                    VerticalAlignment="Top"
                     Margin="0,0,20,0"/>
             </StackPanel>
 

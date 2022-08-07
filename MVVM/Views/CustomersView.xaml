@@ -6,7 +6,533 @@
              xmlns:local="clr-namespace:CarRentalManagementSystem.MVVM.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/IconResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.10*" />
+            <RowDefinition Height="0.90*" />
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{StaticResource Back-Icon}"
+            Command="{Binding NavigateBack}"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Margin="5,5,0,0"
+            />
+
+        <Grid Grid.Row="1">
+            <TabControl>
+                <TabItem
+                    Header="Add New Customers">
+
+                    <StackPanel>
+
+                        <Label
+                            Content="Add New Customers"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center"
+                            Margin="0, 10, 0, 25"
+                            FontSize="20"/>
+
+                        <Grid
+                            Margin="0, 5, 0, 5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.48*" />
+                                <ColumnDefinition Width="0.52*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                Content="Customer Name:"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Right"
+                                Margin="0, 0, 20, 0"
+                                FontSize="14" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding AddCustomerName}"
+                                HorizontalAlignment="Left"
+                                Margin="0, 0, 0, 0"
+                                Width="140"
+                                Height="22"/>
+                        </Grid>
+
+                        <Grid
+                            Margin="0, 5, 0, 5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.48*" />
+                                <ColumnDefinition Width="0.52*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                Content="Customer Gender:"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Right"
+                                Margin="0, 0, 20, 0"
+                                FontSize="14" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding AddCustomerGender}"
+                                HorizontalAlignment="Left"
+                                Margin="0, 0, 0, 0"
+                                Width="140"
+                                Height="22"/>
+                        </Grid>
+
+                        <Grid
+                            Margin="0, 5, 0, 5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.48*" />
+                                <ColumnDefinition Width="0.52*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                Content="Customer Address:"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Right"
+                                Margin="0, 0, 20, 0"
+                                FontSize="14" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding AddCustomerAddress}"
+                                HorizontalAlignment="Left"
+                                Margin="0, 0, 0, 0"
+                                Width="140"
+                                Height="22"/>
+                        </Grid>
+
+                        <Grid
+                            Margin="0, 5, 0, 5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.48*" />
+                                <ColumnDefinition Width="0.52*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                Content="Customer Contact No:"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Right"
+                                Margin="0, 0, 20, 0"
+                                FontSize="14" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding AddCustomerContactNo}"
+                                HorizontalAlignment="Left"
+                                Margin="0, 0, 0, 0"
+                                Width="140"
+                                Height="22"/>
+                        </Grid>
+
+                        <Grid
+                            Margin="0, 5, 0, 5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.48*" />
+                                <ColumnDefinition Width="0.52*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                Content="Customer Email:"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Right"
+                                Margin="0, 0, 20, 0"
+                                FontSize="14" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding AddCustomerEmail}"
+                                HorizontalAlignment="Left"
+                                Margin="0, 0, 0, 0"
+                                Width="140"
+                                Height="22"/>
+                        </Grid>
+
+                        <Button
+                            Grid.Row="1"
+                            Command="{Binding AddCustomerButton}"
+                            Content="Add Customer"
+                            FontSize="12"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0, 40, 0, 0"
+                            Padding="10,5,10,5"
+                            Background="#31E77A" />
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem
+                    Header="Update Existing Customers">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.38*" />
+                            <ColumnDefinition Width="0.62*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Vertical">
+
+                            <Label
+                                Content="Update Customers"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Center"
+                                Margin="0, 10, 0, 25"
+                                FontSize="20"/>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Name:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCustomerName}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Gender:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCustomerGender}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Address:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCustomerAddress}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Contact No:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCustomerContactNo}"
+                                    TextWrapping="Wrap"
+                                    AcceptsReturn="True"
+                                    VerticalScrollBarVisibility="Visible"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="50" />
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Email:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding UpdateCustomerEmail}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0, 0, 0, 0"
+                                    Width="140"
+                                    Height="22"/>
+                            </Grid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding UpdateCustomerButton}"
+                                Content="Update Customer"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0, 40, 0, 0"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.9*" />
+                                <RowDefinition Height="0.1*" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid
+                                Grid.Row="0"
+                                Margin="10"
+                                CanUserAddRows="False"
+                                AutoGenerateColumns="False"
+                                SelectedIndex="{Binding CurrentUpdateCollectionIndex, Mode=TwoWay}"
+                                ItemsSource="{Binding UpdateCustomerCollection}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Binding="{Binding Name}"
+                                        Header="Name"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Gender}"
+                                        Header="Gender"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Address}"
+                                        Header="Address"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding ContactNo}"
+                                        Header="ContactNo"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Email}"
+                                        Header="Email"
+                                        Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding RefreshCollection}"
+                                Content="Refresh Collection"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+                        </Grid>
+
+                    </Grid>
+
+                </TabItem>
+                <TabItem
+                    Header="Delete Existing Customers">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.38*" />
+                            <ColumnDefinition Width="0.62*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Vertical">
+
+                            <Label
+                                Content="Delete Customers"
+                                Foreground="Black"
+                                HorizontalContentAlignment="Center"
+                                Margin="0, 10, 0, 25"
+                                FontSize="20"/>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Customer ID:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Content="{Binding DeleteCustomerID}"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Left"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+                            </Grid>
+
+                            <Grid
+                                Margin="0, 5, 0, 5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.48*" />
+                                    <ColumnDefinition Width="0.52*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Content="Customer Name:"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Right"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Content="{Binding DeleteCustomerName}"
+                                    Foreground="Black"
+                                    HorizontalContentAlignment="Left"
+                                    Margin="0, 0, 20, 0"
+                                    FontSize="14" />
+                            </Grid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding DeleteCustomerButton}"
+                                Content="Delete Car"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0, 40, 0, 0"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.9*" />
+                                <RowDefinition Height="0.1*" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid
+                                Grid.Row="0"
+                                Margin="10"
+                                CanUserAddRows="False"
+                                AutoGenerateColumns="False"
+                                SelectedIndex="{Binding CurrentDeleteCollectionIndex, Mode=TwoWay}"
+                                ItemsSource="{Binding DeleteCustomerCollection}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Binding="{Binding Name}"
+                                        Header="Name"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Gender}"
+                                        Header="Gender"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Address}"
+                                        Header="Address"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding ContactNo}"
+                                        Header="ContactNo"
+                                        Width="*" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Email}"
+                                        Header="Email"
+                                        Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button
+                                Grid.Row="1"
+                                Command="{Binding RefreshCollection}"
+                                Content="Refresh Collection"
+                                FontSize="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Padding="10,5,10,5"
+                                Background="#31E77A" />
+                        </Grid>
+
+                    </Grid>
+
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </UserControl>

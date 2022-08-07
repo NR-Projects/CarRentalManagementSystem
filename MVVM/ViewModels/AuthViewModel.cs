@@ -30,7 +30,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 // Check Inputs
 
                 // Navigate To Main Menu
-                _ServiceCollection.GetNavService().Navigate(new HomeViewModel(_ServiceCollection));
+                GetServiceCollection().GetNavService().Navigate(new HomeViewModel(GetServiceCollection()));
             });
         }
     }

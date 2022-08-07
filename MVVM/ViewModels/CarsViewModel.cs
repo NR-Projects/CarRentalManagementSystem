@@ -33,7 +33,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             InitializeDeleteButton();
 
             NavigateBack = new ExecuteOnlyCommand((_) => {
-                _ServiceCollection.GetNavService().Navigate(new HomeViewModel(_ServiceCollection));
+                GetServiceCollection().GetNavService().Navigate(new HomeViewModel(GetServiceCollection()));
             });
 
             RefreshCollection = new ExecuteOnlyCommand((_) => {
@@ -80,7 +80,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
 
                 if (!ErrorList.Equals(""))
                 {
-                    MessageBox.Show(ErrorList, "Add Car");
+                    MessageBox.Show(ErrorList, "Add Car (Error Popup)");
                     return;
                 }
 
@@ -95,8 +95,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     PlateNo = AddCarPlateNo
                 };
 
-                _ServiceCollection.GetDataService().GetCarRepository().AddCar(carModel);
-                MessageBox.Show("Car Added Successfully");
+                GetServiceCollection().GetDataService().GetCarRepository().AddCar(carModel);
+                MessageBox.Show("Car Added Successfully", "Car Action");
 
                 LoadCollections();
             });
@@ -157,9 +157,11 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 if (String.IsNullOrEmpty(UpdateCarDescription)) ErrorList += "Car Description is Empty \n";
                 if (String.IsNullOrEmpty(UpdateCarPlateNo)) ErrorList += "Car Plate No is Empty \n";
 
+                if (SelectedUpdateCarModel == null) ErrorList += "No Selected Info From Table \n";
+
                 if (!ErrorList.Equals(""))
                 {
-                    MessageBox.Show(ErrorList, "Update Car");
+                    MessageBox.Show(ErrorList, "Update Car (Error Popup)");
                     return;
                 }
 
@@ -175,8 +177,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     PlateNo = UpdateCarPlateNo
                 };
 
-                _ServiceCollection.GetDataService().GetCarRepository().UpdateCar(carModel);
-                MessageBox.Show("Car Updated Successfully");
+                GetServiceCollection().GetDataService().GetCarRepository().UpdateCar(carModel);
+                MessageBox.Show("Car Updated Successfully", "Car Action");
 
                 LoadCollections();
             });
@@ -190,7 +192,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         private void LoadUpdateCarCollection()
         {
             // Pull All Cars
-            List<CarModel> carModels = _ServiceCollection.GetDataService().GetCarRepository().GetBasicCar();
+            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCar();
 
             if (carModels == null) return;
 
@@ -274,7 +276,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     ID = SelectedDeleteCarModel.ID
                 };
 
-                _ServiceCollection.GetDataService().GetCarRepository().DeleteCar(carModel);
+                GetServiceCollection().GetDataService().GetCarRepository().DeleteCar(carModel);
+                MessageBox.Show("Car Deleted Successfully", "Car Action");
 
                 LoadDeleteCarCollection();
             });
@@ -283,7 +286,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         private void LoadDeleteCarCollection()
         {
             // Pull All Cars
-            List<CarModel> carModels = _ServiceCollection.GetDataService().GetCarRepository().GetBasicCar();
+            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCar();
 
             if (carModels == null) return;
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRentalManagementSystem.Repositories
+namespace CarRentalManagementSystem.Services
 {
-    public class TransactionRepository : RepositoryBase
+    public class LogService
     {
     }
 }

@@ -10,6 +10,7 @@ namespace CarRentalManagementSystem.Services
     {
         private NavigationService? _NavigationService;
         private DataService? _DataService;
+        private LogService? _LogService;
 
         public ServiceCollection() { }
 
@@ -25,6 +26,13 @@ namespace CarRentalManagementSystem.Services
             if(_DataService == null)
                 _DataService = new DataService();
             return _DataService;
+        }
+
+        public LogService GetLogService()
+        {
+            if(_LogService == null)
+                _LogService = new LogService();
+            return _LogService;
         }
     }
 }

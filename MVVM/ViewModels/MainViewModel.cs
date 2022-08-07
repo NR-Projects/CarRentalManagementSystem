@@ -14,8 +14,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         {
             get
             {
-                if (_ServiceCollection != null)
-                    return _ServiceCollection.GetNavService().CurrentViewModel;
+                if (GetServiceCollection() != null)
+                    return GetServiceCollection().GetNavService().CurrentViewModel;
                 return null;
             }
         }
@@ -24,15 +24,15 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         {
             get
             {
-                if (_ServiceCollection != null)
-                    return _ServiceCollection.GetNavService().CurrentViewName;
+                if (GetServiceCollection() != null)
+                    return GetServiceCollection().GetNavService().CurrentViewName;
                 return null;
             }
         }
 
         public MainViewModel(ServiceCollection serviceCollection) : base(serviceCollection)
         {
-            _ServiceCollection.GetNavService().CurrentViewModelChanged += OnCurrectViewModelChanged;
+            GetServiceCollection().GetNavService().CurrentViewModelChanged += OnCurrectViewModelChanged;
         }
 
         private void OnCurrectViewModelChanged()

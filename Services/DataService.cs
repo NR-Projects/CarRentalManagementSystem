@@ -11,9 +11,9 @@ namespace CarRentalManagementSystem.Services
 {
     public class DataService
     {
-        private CarRepository _CarRepository;
-        private CustomerRepository _CustomerRepository;
-        private TransactionRepository _TransactionRepository;
+        private CarRepository? _CarRepository;
+        private CustomerRepository? _CustomerRepository;
+        private TransactionRepository? _TransactionRepository;
 
         public CarRepository GetCarRepository()
         {

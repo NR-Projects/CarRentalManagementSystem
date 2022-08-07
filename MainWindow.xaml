@@ -88,6 +88,10 @@
                         DataType="{x:Type viewmodels:CarsViewModel}">
                         <views:CarsView />
                     </DataTemplate>
+                    <DataTemplate
+                        DataType="{x:Type viewmodels:CustomersViewModel}">
+                        <views:CustomersView />
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>
