@@ -100,6 +100,14 @@
                         DataType="{x:Type viewmodels:ReturnCarViewModel}">
                         <views:ReturnCarView />
                     </DataTemplate>
+                    <DataTemplate
+                        DataType="{x:Type viewmodels:ReportsViewModel}">
+                        <views:ReportsView />
+                    </DataTemplate>
+                    <DataTemplate
+                        DataType="{x:Type viewmodels:TransactionsViewModel}">
+                        <views:TransactionsView />
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>

@@ -60,11 +60,11 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             });
 
             NavigateReports = new ExecuteOnlyCommand((_) => {
-                //
+                GetServiceCollection().GetNavService().Navigate(new ReportsViewModel(GetServiceCollection()));
             });
 
             NavigateTransactions = new ExecuteOnlyCommand((_) => {
-                //
+                GetServiceCollection().GetNavService().Navigate(new TransactionsViewModel(GetServiceCollection()));
             });
         }
     }
