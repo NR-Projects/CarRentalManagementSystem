@@ -470,7 +470,7 @@
                             <Button
                                 Grid.Row="1"
                                 Command="{Binding DeleteCustomerButton}"
-                                Content="Delete Car"
+                                Content="Delete Customer"
                                 FontSize="12"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"

@@ -3,10 +3,351 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CarRentalManagementSystem.MVVM.Views"
+             xmlns:local="clr-namespace:CarRentalManagementSystem.MVVM.Views" xmlns:viewmodels="clr-namespace:CarRentalManagementSystem.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RentCarViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/IconResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{StaticResource Back-Icon}"
+            Command="{Binding NavigateBack}"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Margin="5,5,0,0"
+            />
+        
+        <Grid
+            Margin="0,0,0,10"
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.35*" />
+                <ColumnDefinition Width="0.65*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Vertical"
+                VerticalAlignment="Center">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Car ID:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <Label
+                        Grid.Column="1"
+                        Content="{Binding SelectedCarID}"
+                        Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Rent Date:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <DatePicker
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        SelectedDate="{Binding SetRentDate, Mode=OneWayToSource}"
+                        BorderThickness="0,0,0,0"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Return Date:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <DatePicker
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        SelectedDate="{Binding SetReturnDate, Mode=OneWayToSource}"
+                        BorderThickness="0,0,0,0"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Total Cost:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <Label
+                        Grid.Column="1"
+                        Content="{Binding TotalCost, Mode=OneWay}"
+                        Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                </Grid>
+
+            </StackPanel>
+
+            <Grid
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*" />
+                    <RowDefinition Height="0.85*" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Column="0"
+                    Content="Available Cars"
+                    Foreground="White"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    VerticalAlignment="Bottom"
+                    Margin="0, 0, 0, 0"
+                    FontSize="14" />
+
+                <DataGrid
+                    Grid.Row="1"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    SelectedIndex="{Binding CurrentCarSelectedIndex, Mode=TwoWay}"
+                    ItemsSource="{Binding CarCollection}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Binding="{Binding ID}"
+                            Header="ID"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Type}"
+                            Header="Type"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Brand}"
+                            Header="Brand"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Model}"
+                            Header="Model"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Description}"
+                            Header="Description"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding PlateNo}"
+                            Header="PlateNo"
+                            Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+        </Grid>
+
+        <Grid
+            Margin="0,0,0,10"
+            Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.35*" />
+                <ColumnDefinition Width="0.65*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Vertical"
+                VerticalAlignment="Center">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Customer ID:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <Label
+                        Grid.Column="1"
+                        Content="{Binding SelectedCustomerID}"
+                        Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content=" Name:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <Label
+                        Grid.Column="1"
+                        Content="{Binding SelectedCustomerName}"
+                        Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                </Grid>
+
+            </StackPanel>
+
+            <Grid
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*" />
+                    <RowDefinition Height="0.85*" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Content="Customers"
+                    Foreground="White"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14" />
+
+                <DataGrid
+                    Grid.Row="1"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    SelectedIndex="{Binding CurrentCustomerSelectedIndex, Mode=TwoWay}"
+                    ItemsSource="{Binding CustomerCollection}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Binding="{Binding ID}"
+                            Header="ID"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Name}"
+                            Header="Name"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Gender}"
+                            Header="Gender"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Address}"
+                            Header="Address"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding ContactNo}"
+                            Header="ContactNo"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Email}"
+                            Header="Email"
+                            Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+
+            <Button
+                Grid.Row="1"
+                Command="{Binding OpenCustomersViewButton}"
+                Content="Open Customers View"
+                FontSize="12"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Padding="10,5,10,5"
+                Margin="20, 0, 10, 0"
+                Background="#31E77A" />
+
+            <Button
+                Grid.Row="1"
+                Command="{Binding RentCarButton}"
+                Content="Rent Car"
+                FontSize="12"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Padding="10,5,10,5"
+                Margin="20, 0, 10, 0"
+                Background="#31E77A" />
+
+            <Button
+                Grid.Row="1"
+                Command="{Binding RefreshCollections}"
+                Content="Refresh Collection"
+                FontSize="12"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Padding="10,5,10,5"
+                Margin="20, 0, 10, 0"
+                Background="#31E77A" />
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

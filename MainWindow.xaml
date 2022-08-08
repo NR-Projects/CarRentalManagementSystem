@@ -92,6 +92,14 @@
                         DataType="{x:Type viewmodels:CustomersViewModel}">
                         <views:CustomersView />
                     </DataTemplate>
+                    <DataTemplate
+                        DataType="{x:Type viewmodels:RentCarViewModel}">
+                        <views:RentCarView />
+                    </DataTemplate>
+                    <DataTemplate
+                        DataType="{x:Type viewmodels:ReturnCarViewModel}">
+                        <views:ReturnCarView />
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>

@@ -71,7 +71,7 @@ namespace CarRentalManagementSystem.Repositories
             mySql.Open();
 
             string QueryStr = String.Format(
-                "UPDATE Customer SET CustName=\"{0}\", CustGender=\"{1}\", CustAddress=\"{2}\", CustContactNo=\"{3}\", CustEmail=\"{4}\" WHERE CustID=\"{5}\"",
+                "UPDATE Customer SET CustName=\"{0}\", CustGender=\"{1}\", CustAddress=\"{2}\", CustContactNo=\"{3}\", CustEmail=\"{4}\" WHERE CustID={5}",
                 customer.Name,
                 customer.Gender,
                 customer.Address,
@@ -93,7 +93,7 @@ namespace CarRentalManagementSystem.Repositories
             mySql.Open();
 
             string QueryStr = String.Format(
-                "DELETE FROM Customer WHERE CustID=\"{0}\"",
+                "DELETE FROM Customer WHERE CustID={0}",
                 customer.ID
                 );
 

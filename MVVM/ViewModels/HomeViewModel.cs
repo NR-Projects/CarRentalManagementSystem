@@ -52,11 +52,11 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             });
 
             NavigateRentCar = new ExecuteOnlyCommand((_) => {
-                //
+                GetServiceCollection().GetNavService().Navigate(new RentCarViewModel(GetServiceCollection()));
             });
 
             NavigateReturnCar = new ExecuteOnlyCommand((_) => {
-                //
+                GetServiceCollection().GetNavService().Navigate(new ReturnCarViewModel(GetServiceCollection()));
             });
 
             NavigateReports = new ExecuteOnlyCommand((_) => {

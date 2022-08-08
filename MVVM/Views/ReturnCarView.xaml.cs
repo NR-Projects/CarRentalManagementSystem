@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CarRentalManagementSystem.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for ReturnCar.xaml
+    /// Interaction logic for ReturnCarView.xaml
     /// </summary>
-    public partial class ReturnCar : UserControl
+    public partial class ReturnCarView : UserControl
     {
-        public ReturnCar()
+        public ReturnCarView()
         {
             InitializeComponent();
         }

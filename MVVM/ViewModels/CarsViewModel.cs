@@ -62,6 +62,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         public string AddCarModel { get; set; }
         public string AddCarDescription { get; set; }
         public string AddCarPlateNo { get; set; }
+        public string AddCarPricePerDay { get; set; }
 
         public ICommand? AddCarButton { get; set; }
 
@@ -77,6 +78,9 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 if (String.IsNullOrEmpty(AddCarModel)) ErrorList += "Car Model is Empty \n";
                 if (String.IsNullOrEmpty(AddCarDescription)) ErrorList += "Car Description is Empty \n";
                 if (String.IsNullOrEmpty(AddCarPlateNo)) ErrorList += "Car Plate No is Empty \n";
+                if (String.IsNullOrEmpty(AddCarPricePerDay)) ErrorList += "Car Price No is Empty \n";
+
+                try { double d = Double.Parse(AddCarPricePerDay); } catch(Exception ex) { ErrorList += "Invalid Car Price \n"; }
 
                 if (!ErrorList.Equals(""))
                 {
@@ -92,7 +96,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     Brand = AddCarBrand,
                     Model = AddCarModel,
                     Description = AddCarDescription,
-                    PlateNo = AddCarPlateNo
+                    PlateNo = AddCarPlateNo,
+                    PricePerDay = Double.Parse(AddCarPricePerDay)
                 };
 
                 GetServiceCollection().GetDataService().GetCarRepository().AddCar(carModel);
@@ -110,12 +115,14 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         private string? _UpdateCarModel;
         private string? _UpdateCarDescription;
         private string? _UpdateCarPlateNo;
+        private string? _UpdateCarPricePerDay;
 
         public string? UpdateCarType { get => _UpdateCarType; set => SetProperty(ref _UpdateCarType, value); }
         public string? UpdateCarBrand { get => _UpdateCarBrand; set => SetProperty(ref _UpdateCarBrand, value); }
         public string? UpdateCarModel { get => _UpdateCarModel; set => SetProperty(ref _UpdateCarModel, value); }
         public string? UpdateCarDescription { get => _UpdateCarDescription; set => SetProperty(ref _UpdateCarDescription, value); }
         public string? UpdateCarPlateNo { get => _UpdateCarPlateNo; set => SetProperty(ref _UpdateCarPlateNo, value); }
+        public string? UpdateCarPricePerDay { get => _UpdateCarPricePerDay; set => SetProperty(ref _UpdateCarPricePerDay, value); }
 
         public ICommand? UpdateCarButton { get; set; }
 
@@ -131,7 +138,6 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             set
             {
                 SetProperty(ref this._CurrentUpdateCollectionIndex, value);
-                this._CurrentUpdateCollectionIndex = value;
                 SelectedUpdateItemChanged();
             }
         }
@@ -156,6 +162,9 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 if (String.IsNullOrEmpty(UpdateCarModel)) ErrorList += "Car Model is Empty \n";
                 if (String.IsNullOrEmpty(UpdateCarDescription)) ErrorList += "Car Description is Empty \n";
                 if (String.IsNullOrEmpty(UpdateCarPlateNo)) ErrorList += "Car Plate No is Empty \n";
+                if (String.IsNullOrEmpty(UpdateCarPricePerDay)) ErrorList += "Car Price is Empty \n";
+
+                try { double d = Double.Parse(UpdateCarPricePerDay); } catch (Exception ex) { ErrorList += "Invalid Car Price \n"; }
 
                 if (SelectedUpdateCarModel == null) ErrorList += "No Selected Info From Table \n";
 
@@ -174,7 +183,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     Brand = UpdateCarBrand,
                     Model = UpdateCarModel,
                     Description = UpdateCarDescription,
-                    PlateNo = UpdateCarPlateNo
+                    PlateNo = UpdateCarPlateNo,
+                    PricePerDay = Double.Parse(UpdateCarPricePerDay)
                 };
 
                 GetServiceCollection().GetDataService().GetCarRepository().UpdateCar(carModel);
@@ -192,7 +202,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         private void LoadUpdateCarCollection()
         {
             // Pull All Cars
-            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCar();
+            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCars();
 
             if (carModels == null) return;
 
@@ -218,6 +228,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             UpdateCarModel = SelectedUpdateCarModel.Model;
             UpdateCarDescription = SelectedUpdateCarModel.Description;
             UpdateCarPlateNo = SelectedUpdateCarModel.PlateNo;
+            UpdateCarPricePerDay = SelectedUpdateCarModel.PricePerDay.ToString();
         }
     }
 
@@ -286,7 +297,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         private void LoadDeleteCarCollection()
         {
             // Pull All Cars
-            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCar();
+            List<CarModel> carModels = GetServiceCollection().GetDataService().GetCarRepository().GetBasicCars();
 
             if (carModels == null) return;
 
