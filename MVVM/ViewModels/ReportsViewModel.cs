@@ -97,6 +97,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     PriceState = true;
                     break;
             }
+
+            LoadCollection();
         }
 
         private void LoadCollection()

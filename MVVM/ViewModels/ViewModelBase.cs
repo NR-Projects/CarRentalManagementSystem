@@ -19,8 +19,14 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             return _ServiceCollection;
         }
 
-        public virtual void OnEnterView() {}
-        public virtual void OnExitView() {}
+        public virtual void OnEnterView()
+        {
+            _ServiceCollection.GetLogService().WriteLog(LogService.LogInfo, ViewName, "On Enter View is Called");
+        }
+        public virtual void OnExitView()
+        {
+            _ServiceCollection.GetLogService().WriteLog(LogService.LogInfo, ViewName, "On Exit View is Called");
+        }
 
         private void SetupUI()
         {
@@ -28,11 +34,19 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             InitializeProperties();
         }
 
-        protected virtual void InitializeButtons() { }
-        protected virtual void InitializeProperties() { }
+        protected virtual void InitializeButtons()
+        {
+            _ServiceCollection.GetLogService().WriteLog(LogService.LogInfo, ViewName, "Buttons are initialized for this ViewModel");
+        }
+        protected virtual void InitializeProperties()
+        {
+            _ServiceCollection.GetLogService().WriteLog(LogService.LogInfo, ViewName, "Properties are initialized for this ViewModel");
+        }
 
         public ViewModelBase(ServiceCollection serviceCollection)
         {
+            serviceCollection.GetLogService().WriteLog(LogService.LogInfo, ViewName + " [ViewModel]", "ViewModel Constructor Called");
+
             // Initialize Services
             _ServiceCollection = serviceCollection;
 

@@ -65,7 +65,7 @@
                     Content="Model: "
                     Foreground="White" />
                 <TextBox
-                    Text="{Binding ModelFilterStr}"
+                    Text="{Binding ModelFilterStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     VerticalContentAlignment="Center"
                     Width="100" />
             </StackPanel>
@@ -80,7 +80,7 @@
                     Content="Brand: "
                     Foreground="White" />
                 <TextBox
-                    Text="{Binding BrandFilterStr}"
+                    Text="{Binding BrandFilterStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     VerticalContentAlignment="Center"
                     Width="100" />
             </StackPanel>
@@ -95,14 +95,14 @@
                     Content="Price: "
                     Foreground="White" />
                 <TextBox
-                    Text="{Binding LowerPriceRange}"
+                    Text="{Binding LowerPriceRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     VerticalContentAlignment="Center"
                     Width="50" />
                 <Label
                     Content="to"
                     Foreground="White" />
                 <TextBox
-                    Text="{Binding HigherPriceRange}"
+                    Text="{Binding HigherPriceRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     VerticalContentAlignment="Center"
                     Width="50" />
             </StackPanel>
