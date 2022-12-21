@@ -29,7 +29,7 @@ namespace CarRentalManagementSystem
         {
             InitializeAppFiles();
 
-            serviceCollection.GetNavService().Navigate(new AuthViewModel(serviceCollection));
+            serviceCollection.GetNavService().Navigate(new HomeViewModel(serviceCollection));
             DataContext = new MainViewModel(serviceCollection);
 
             InitializeComponent();

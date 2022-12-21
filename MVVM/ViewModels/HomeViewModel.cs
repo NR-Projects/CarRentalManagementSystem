@@ -13,9 +13,6 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
     {
         public override string ViewName => "Home View";
 
-        public ICommand? NavigateSettings { get; set; }
-        public ICommand? NavigateLogout { get; set; }
-
         public ICommand? NavigateCars { get; set; }
         public ICommand? NavigateCustomers { get; set; }
         public ICommand? NavigateRentCar { get; set; }
@@ -30,17 +27,6 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
         protected override void InitializeButtons()
         {
             base.InitializeButtons();
-
-            NavigateSettings = new ExecuteOnlyCommand((_) => {
-                //
-            });
-
-            NavigateLogout = new ExecuteOnlyCommand((_) => {
-                // Clear Session
-
-                // Send Back To Auth View
-                GetServiceCollection().GetNavService().Navigate(new AuthViewModel(GetServiceCollection()));
-            });
 
 
             NavigateCars = new ExecuteOnlyCommand((_) => {

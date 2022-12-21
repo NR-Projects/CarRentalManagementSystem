@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\hp\Documents\-----------------\Projects\CarRentalManagementSystem\App.xaml
-101713879910
+9350313517
 
-37612099110
+35-2071383768
 204-627522182
-MainWindow.xaml;MVVM\Views\AuthView.xaml;MVVM\Views\CarsView.xaml;MVVM\Views\CustomersView.xaml;MVVM\Views\HomeView.xaml;MVVM\Views\RentCarView.xaml;MVVM\Views\ReportsView.xaml;MVVM\Views\ReturnCarView.xaml;MVVM\Views\TransactionsView.xaml;Resources\IconResources.xaml;
+MainWindow.xaml;MVVM\Views\CarsView.xaml;MVVM\Views\CustomersView.xaml;MVVM\Views\HomeView.xaml;MVVM\Views\RentCarView.xaml;MVVM\Views\ReportsView.xaml;MVVM\Views\ReturnCarView.xaml;MVVM\Views\TransactionsView.xaml;Resources\IconResources.xaml;
 
-True
+False
 
