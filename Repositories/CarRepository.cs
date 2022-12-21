@@ -190,13 +190,10 @@ namespace CarRentalManagementSystem.Repositories
                 if (car.RentDate == null) return;
                 if (car.ReturnDate == null) return;
 
-                DateTime RentDate = (DateTime)car.RentDate;
-                DateTime ReturnDate = (DateTime)car.ReturnDate;
-
                 QueryStr = String.Format(
                     "UPDATE Car SET CarStatus=\"Rented\", CarRentDate=\"{0}\", CarReturnDate=\"{1}\", CarRentCustomer={2} WHERE CarID={3}",
-                    RentDate.ToString("yyyy-MM-dd"),
-                    ReturnDate.ToString("yyyy-MM-dd"),
+                    ((DateTime)car.RentDate).ToString("yyyy-MM-dd"),
+                    ((DateTime)car.ReturnDate).ToString("yyyy-MM-dd"),
                     car.RentCustomer.ID,
                     car.ID
                     );

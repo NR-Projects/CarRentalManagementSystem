@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CarRentalManagementSystem.MVVM.Views" xmlns:viewmodels="clr-namespace:CarRentalManagementSystem.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ReturnCarViewModel}"
+             xmlns:local="clr-namespace:CarRentalManagementSystem.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:CarRentalManagementSystem.MVVM.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ReturnCarViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -53,6 +55,28 @@
 
                     <Label
                         Grid.Column="0"
+                        Content="Return Date:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <DatePicker
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        SelectedDate="{Binding SetReturnDate}"
+                        BorderThickness="0,0,0,0"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
                         Content="Car ID:"
                         Foreground="White"
                         HorizontalContentAlignment="Right"
@@ -85,6 +109,29 @@
                     <Label
                         Grid.Column="1"
                         Content="{Binding SelectedCustomerName}"
+                        Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Content="Penalty:"
+                        Foreground="White"
+                        HorizontalContentAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        FontSize="14" />
+
+                    <Label
+                        Grid.Column="1"
+                        Content="{Binding CalculatedPenalty}"
                         Foreground="White"
                         HorizontalContentAlignment="Left"
                         Margin="0, 0, 20, 0"

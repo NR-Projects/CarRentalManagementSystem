@@ -18,15 +18,29 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
 
         private CarModel SelectedCarModel;
 
+        private DateTime _SetReturnDate;
+        public DateTime SetReturnDate
+        {
+            get => _SetReturnDate;
+            set
+            {
+                SetProperty(ref _SetReturnDate, value);
+                OnCalculatePenalty();
+            }
+        }
+
         private string _SelectedCarID;
         private string _SelectedCustomerName;
         public string SelectedCarID { get => _SelectedCarID; set => SetProperty(ref _SelectedCarID, value); }
         public string SelectedCustomerName { get => _SelectedCustomerName; set => SetProperty(ref _SelectedCustomerName, value); }
 
+        private int _CalculatedPenalty;
+        public int CalculatedPenalty { get => _CalculatedPenalty; set => SetProperty(ref _CalculatedPenalty, value); }
+
         public ObservableCollection<CarModel> CarCollection { get; set; }
 
         private int _CurrentCarSelectedIndex;
-        public int CurrentCarSelectedIndex { get => _CurrentCarSelectedIndex; set { SetProperty(ref _CurrentCarSelectedIndex, value); OnItemSelectedChanged(); } }
+        public int CurrentCarSelectedIndex { get => _CurrentCarSelectedIndex; set { SetProperty(ref _CurrentCarSelectedIndex, value); OnItemSelectedChanged(); OnCalculatePenalty(); } }
 
         public ICommand? NavigateBack { get; set; }
         public ICommand? ReturnCarButton { get; set; }
@@ -43,6 +57,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
             CurrentCarSelectedIndex = -1;
 
             CarCollection = new ObservableCollection<CarModel>();
+
+            SetReturnDate = DateTime.Now;
 
             SelectedCarID = "?";
             SelectedCustomerName = "?";
@@ -70,6 +86,18 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                     return;
                 }
 
+                // Check For Penalties (1 Day = CarPrice * 1.1)
+
+                if (CalculatedPenalty != 0)
+                {
+                    // Show Popup
+                    string PenaltyStr = String.Format("Late car return incurs penalty of amount P{0}, Press Cancel to Go Back", CalculatedPenalty);
+                    MessageBoxResult mbres = MessageBox.Show(PenaltyStr, "Return Car (Penalty Popup)", MessageBoxButton.OKCancel);
+                    if (mbres == MessageBoxResult.Cancel) return;
+                }
+
+                // Wrap up
+
                 CarModel carModel = new CarModel()
                 {
                     ID = SelectedCarModel.ID,
@@ -77,6 +105,20 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 };
 
                 GetServiceCollection().GetDataService().GetCarRepository().UpdateCarRentStatus(carModel);
+                if (CalculatedPenalty != 0)
+                {
+                    GetServiceCollection().GetDataService().GetTransactionRepository().AddTransaction(
+                    new TransactionModel()
+                    {
+                        Label = "Return Penalty",
+                        Car = carModel,
+                        Customer = SelectedCarModel.RentCustomer,
+                        RentDate = ((DateTime)SelectedCarModel.RentDate),
+                        ReturnDate = ((DateTime)SelectedCarModel.ReturnDate),
+                        TotalCost = CalculatedPenalty
+                    }
+                );
+                }
                 MessageBox.Show(String.Format("Car Under Customer: {0} Was Returned Successfully", SelectedCustomerName), "Return Car Action");
 
                 SelectedCarModel = null;
@@ -119,6 +161,26 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
 
             SelectedCarID = SelectedCarModel.ID.ToString();
             SelectedCustomerName = SelectedCarModel.RentCustomer.Name;
+        }
+
+        private void OnCalculatePenalty()
+        {
+            if (SelectedCarModel == null) return;
+
+            // Check Date
+            int DaysGap = 0;
+            
+            if (SelectedCarModel.ReturnDate < SetReturnDate)
+            {
+                Console.WriteLine(SelectedCarModel.ReturnDate.ToString());
+                Console.WriteLine(SetReturnDate.ToString());
+                DaysGap = (SetReturnDate - ((DateTime)SelectedCarModel.ReturnDate)).Days;
+            }
+
+            // Check Car Price Per Day
+            double CarCost = SelectedCarModel.PricePerDay;
+
+            CalculatedPenalty = (int)(CarCost * DaysGap * 1.1);
         }
     }
 }
