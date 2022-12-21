@@ -62,7 +62,7 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 // Check Inputs
                 string ErrorList = "";
 
-                if (SelectedCarModel == null) ErrorList += "No Selected Car For Return \n";
+                if (SelectedCarModel == null || SelectedCarID.Equals("?") || SelectedCustomerName.Equals("?")) ErrorList += "No Selected Car For Return \n";
 
                 if (!ErrorList.Equals(""))
                 {
@@ -78,6 +78,8 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
 
                 GetServiceCollection().GetDataService().GetCarRepository().UpdateCarRentStatus(carModel);
                 MessageBox.Show(String.Format("Car Under Customer: {0} Was Returned Successfully", SelectedCustomerName), "Return Car Action");
+
+                SelectedCarModel = null;
 
                 LoadCollection();
             });

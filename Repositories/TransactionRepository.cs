@@ -20,10 +20,12 @@ namespace CarRentalManagementSystem.Repositories
                 transaction.Label,
                 transaction.Car.ID,
                 transaction.Customer.ID,
-                transaction.RentDate.ToString(),
-                transaction.ReturnDate.ToString(),
+                transaction.RentDate.ToString("yyyy-MM-dd"),
+                transaction.ReturnDate.ToString("yyyy-MM-dd"),
                 transaction.TotalCost
                 );
+
+            Console.WriteLine(QueryStr);
 
             MySqlCommand mySqlCommand = new MySqlCommand(QueryStr, mySql);
             mySqlCommand.CommandType = System.Data.CommandType.Text;

@@ -146,7 +146,21 @@ namespace CarRentalManagementSystem.MVVM.ViewModels
                 };
 
                 GetServiceCollection().GetDataService().GetCarRepository().UpdateCarRentStatus(carModel);
+                GetServiceCollection().GetDataService().GetTransactionRepository().AddTransaction(
+                    new TransactionModel()
+                    {
+                        Label = "Rent",
+                        Car = carModel,
+                        Customer = customerModel,
+                        RentDate = SetRentDate,
+                        ReturnDate = SetReturnDate,
+                        TotalCost = Double.Parse(TotalCost.Substring(3))
+                    }
+                );
                 MessageBox.Show(String.Format("Car Rented Successfully Under Customer: {0}", SelectedCustomerName), "Rent Car Action");
+
+                SelectedCarModel = null;
+                SelectedCustomerModel = null;
 
                 LoadCarCollection();
                 LoadCustomerCollection();
